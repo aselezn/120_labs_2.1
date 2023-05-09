@@ -33,7 +33,7 @@ public class MyFile {
     //метод разделяющий текст на слова, а так же приводящий к нижнему регистру
     public List<String> splitText(){
         List<String> words = new ArrayList<>();
-        String[] split = fileText.split("\\P{L}+"); //делим строку по любому количеству пробелов и/или табуляций.
+        String[] split = fileText.split("\\P{L}+"); //делим строки по любому количеству пробелов и/или табуляций.
 
         for (String s : split) {
             if (s.matches("[а-яА-ЯёЁ-]+")) {
@@ -48,17 +48,17 @@ public class MyFile {
     public static List<String> getSetWord(String fileText) {
             MyFile myFile = new MyFile(new File(fileText));
             List<String> words = myFile.splitText();
-            Set<String> uniqueWords = new LinkedHashSet<>(words);
+            Set<String> uniqueWords = new LinkedHashSet<>(words); //set - интерфейс, обеспечивающий коллекцию без дубликатов
             return new ArrayList<>(uniqueWords);
     }
 
     //счетчик частоты использования слов, возвращающий словарь с частотами слов
     public Map<String, Integer> countWordFrequency() {
             List<String> words = splitText();
-            Map<String, Integer> wordFrequency = new HashMap<>();
+            Map<String, Integer> wordFrequency = new HashMap<>(); // String - ключ, Integer - значение
 
             for (String word : words) {
-                wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1);
+                wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1); //getOrDefault() - для получения значения, связанного с указанным ключом, или возвращения значения по умолчанию, если ключ не найден в карте
             }
 
             return wordFrequency;
